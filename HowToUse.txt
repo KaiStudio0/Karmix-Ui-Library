@@ -1,0 +1,39 @@
+local Karmix = require(script.KarmixLibrary)
+    
+-- Crear la ventana principal
+local window = Karmix.new("Mi Aplicación", "Dark")
+    
+-- Crear componentes básicos
+window:CreateButton("Botón de Prueba", function()
+    print("¡Botón presionado!")
+end)
+    
+window:CreateSlider("Velocidad", 0, 100, 50, function(value)
+    print("Velocidad:", value)
+end)
+    
+window:CreateToggle("Activar Función", false, function(state)
+    print("Estado:", state)
+end)
+    
+window:CreateTextBox("Ingresa tu nombre", function(text)
+    print("Nombre:", text)
+end)
+    
+window:CreateDropdown("Selecciona Opción", {"Opción 1", "Opción 2", "Opción 3"}, function(selected)
+    print("Seleccionado:", selected)
+end)
+    
+-- Crear tabs
+local tabSystem = window:CreateTabSystem()
+    
+local tab1 = tabSystem:CreateTab("Principal")
+tab1.AddButton("Botón en Tab", function()
+    window:Notify("Éxito", "¡Botón en tab presionado!", 3, "success")
+end)
+    
+local tab2 = tabSystem:CreateTab("Configuración")
+tab2.AddSlider("Configuración", 0, 10, 5, function(v) print(v) end)
+    
+-- Mostrar notificación
+window:Notify("Bienvenido", "Karmix Library cargada correctamente", 5, "success")
